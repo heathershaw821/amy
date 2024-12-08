@@ -1,4 +1,3 @@
-
 # Amy
 
 **Amy** is a quirky and semi-useful IRC bot designed to spice up your IRC experience. Whether you're commanding her to execute tasks, show off ASCII art, or just cause a bit of friendly chaos, Amy is always happy to help (or at least entertain).
@@ -11,6 +10,7 @@
 - **Moderation Tools**: Designed to help mods manage their channels effectively.
 - **ASCII Art Performances**: Amy adds personality to interactions with expressive ASCII art.
 - **Authentication System**: Grants special privileges to authorized users, managed via `config.json`.
+- **Information Collection**: Amy can identify and process patterns like URLs, emails, card numbers, and more for moderation or analysis.
 
 ---
 
@@ -30,72 +30,92 @@ Amy comes with the following command set:
 
 ---
 
-### Detailed Command Descriptions
+## Information Collection
 
-#### `$reload`
-- **What it does**: Disconnects and reloads Amy.
-- **Who can use it**: Mods with "o" (operator) privileges.
-- **Behavior**: If unauthorized, Amy humorously refuses the command and kicks the user out of the channel.
+Amy includes a comprehensive set of tools to collect and process information from text. These capabilities are designed for moderation, filtering, and enriching the user experience. Here’s an overview of what Amy can collect and how it processes data:
 
-#### `$join <channel>`
-- **What it does**: Makes Amy join a specified IRC channel.
-- **Who can use it**: Mods with "h" (half-op) or higher privileges.
-- **Behavior**: Unauthorized attempts result in playful ASCII art and a kick.
+### Information Types
 
-#### `$nick <new_name>`
-- **What it does**: Changes Amy's nickname.
-- **Who can use it**: Mods with "o" (operator) privileges.
-- **Behavior**: Unauthorized users receive a loud, humorous refusal.
+| Type                     | Description                                                                                   |
+|--------------------------|-----------------------------------------------------------------------------------------------|
+| **Card Information**     | Detects and processes card details like number, type, and status.                             |
+| **Darknet Links**         | Identifies `.onion` addresses commonly used on the dark web.                                  |
+| **Pastebin Links**        | Extracts raw content from supported pastebin-like services.                                   |
+| **Contact Information**   | Recognizes email addresses and other contact details.                                        |
+| **Web Links**             | Detects URLs, IP addresses, and specific services like YouTube.                              |
 
-#### `$op <user>`
-- **What it does**: Grants operator status to a specified user in the current channel.
-- **Who can use it**: Mods with "o" (operator) privileges.
-- **Behavior**: Only works in a channel; otherwise, Amy gently reminds the user.
+### How It Works
 
-#### `$auth <username> <password>`
-- **What it does**: Authenticates a user with their username and password.
-- **Who can use it**: Any user, but it must be sent via private message.
-- **Behavior**: Public use of this command triggers a stern warning about password security.
+1. **Pattern Matching**: 
+   Amy uses a set of regular expressions to identify specific patterns in text, such as:
+   - Credit card numbers (`\b[0-9]{16}\b`)
+   - Email addresses (`[A-Z0-9_.+-]+@[A-Z0-9-]+\.[A-Z0-9-.]+`)
+   - URLs (`(?:http|ftp|git|irc)s?://...`)
+   - Darknet `.onion` addresses.
 
-#### `(^d|.* d)o(o+)m.*`
-- **What it does**: Triggers an ASCII art sequence representing DOOM in its most glorious form.
-- **Who can use it**: Anyone.
-- **Behavior**: Amy sends a dramatic series of ASCII lines to the channel with timed delays.
+2. **Data Processing**: 
+   Detected information is passed through corresponding handlers, which can:
+   - Validate the data (e.g., Luhn's algorithm for card numbers).
+   - Fetch additional metadata (e.g., using YouTube’s oEmbed API).
+   - Retrieve and screen content (e.g., from Pastebin).
 
-#### `fuck <something>`
-- **What it does**: Outputs an ASCII sequence expressing strong feelings about the input.
-- **Who can use it**: Anyone.
-- **Behavior**: The sequence includes the text provided by the user, shouting it loudly for all to see.
+3. **Queue System**:
+   Amy uses a multi-threaded queue to handle data processing efficiently in real-time.
+
+4. **JSON Integration**:
+   Processed information is structured into JSON format for easy handling and potential logging.
+
+### Example Configurations
+
+Sample regular expressions and handlers are defined in `handlers`:
+
+```python
+self.card_handlers = {
+    r"\b[0-9]{16}\b": self.ccn_handler,
+    r"\b(DEBIT|CREDIT)\b": lambda x: {"card_account": [y.lower() for y in x]},
+    ...
+}
+```
 
 ---
 
 ## Configuration
 
-Amy is configured via a JSON file, `config.json`. Here’s a sample:
+Amy is configured via a JSON file, `config.json`. See the earlier sections for a sample configuration file.
 
-```json
-{
-    "irc.hackermeme.net": {
-        "channels": ["#cmd", "#design", "#hackermeme", "#music"],
-        "prefix": "amy!amy@localhost",
-        "sslflag": false,
-        "port": 6667,
-        "mods": {
-            "heather": ["o", "<PASSWORD-HASH>"],
-            "epoch": ["o", "<PASSWORD-HASH>"],
-            "alice": ["o", "<PASSWORD-HASH>"],
-            "bunny": ["o", "<PASSWORD-HASH>"],
-            "uniquelyelite": ["h", "<PASSWORD-HASH>"]
-        }
-    }
-}
-```
+---
 
-### Configuration Notes
-- **Server Settings**: Define the IRC server, channels, and connection options.
-- **Moderators**: Use hashed passwords to manage access levels:
-  - `"o"`: Operator privileges.
-  - `"h"`: Half-op privileges.
+## Running Amy
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/Amy.git
+   cd Amy
+   ```
+
+2. Configure the bot:
+   - Copy and edit the sample configuration:
+     ```bash
+     cp config.sample.json config.json
+     nano config.json
+     ```
+
+3. Run the bot:
+   ```bash
+   python Amy.py
+   ```
+
+---
+
+## Contributing
+
+Want to add new features or commands? Feel free to fork the repo, make changes, and submit a pull request. Amy is always open to new ideas!
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
