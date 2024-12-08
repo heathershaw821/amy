@@ -5,11 +5,11 @@
         "sslflag": false,
 	"port": 6667,
 	"mods": {
-			"heather":	["o", "6cd1dbcb7abb51dd132c67d9510ac309e25f573e874570b790856149878c60a0"],
-			"epoch": 	["o", "68c6817dbde47f18789d16d52bac1c09282232faa467b96f8548cd202415563f"],
-			"alice":	["o", "3a153e72cb6dc0f3ee93f2c1b024fdd2747f89df0940bb51180b89c6410e217a"],
-			"bunny":	["o", "0509594d2775b4484461461e695fa55924bdba2c2825c12c1d6ad61da3a18a46"],
-			"uniquelyelite":	["h", "c9d3b3cc0041066b929f97db60595f0a1243bfe63832ddc0a761b835e642781f"]
+			"heather":	["o", ""],
+			"epoch": 	["o", ""],
+			"alice":	["o", ""],
+			"bunny":	["o", ""],
+			"uniquelyelite":	["h", ""]
 		}
     }
 }
