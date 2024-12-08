@@ -200,7 +200,7 @@ class handlers:
 			## query neo4j and return all relevent card information
 			########################################################
 			neo_result = neo4j.graph_handler('match (a:Bin:Number)--(b:Bin:Scheme) where a.name = "%s" optional match (a:Bin:Number)--(c:Bin:Bank) optional match (a:Bin:Number)--(d:Geo:Country) return b.name as Scheme, c.name as Bank, d.geohash as Country' % x[:6],
-								"10.100.90.221", "neo4j", "62b78c0dff", neo_handler, read=True)
+								"10.100.90.221", "neo4j", "password-goes-here", neo_handler, read=True)
 			results.update(neo_result)
 			return results
 		def luhn(n):
