@@ -1,22 +1,22 @@
 
-# AmyBot
+# Amy
 
-**AmyBot** is a quirky and semi-useful IRC bot designed to spice up your IRC experience. Whether you're commanding her to execute tasks, show off ASCII art, or just cause a bit of friendly chaos, AmyBot is always happy to help (or at least entertain).
+**Amy** is a quirky and semi-useful IRC bot designed to spice up your IRC experience. Whether you're commanding her to execute tasks, show off ASCII art, or just cause a bit of friendly chaos, Amy is always happy to help (or at least entertain).
 
 ---
 
 ## Features
 
-- **Dynamic Commands**: AmyBot supports a variety of text-based commands for moderators and users.
+- **Dynamic Commands**: Amy supports a variety of text-based commands for moderators and users.
 - **Moderation Tools**: Designed to help mods manage their channels effectively.
-- **ASCII Art Performances**: AmyBot adds personality to interactions with expressive ASCII art.
+- **ASCII Art Performances**: Amy adds personality to interactions with expressive ASCII art.
 - **Authentication System**: Grants special privileges to authorized users, managed via `config.json`.
 
 ---
 
 ## Commands
 
-AmyBot comes with the following command set:
+Amy comes with the following command set:
 
 | Command Pattern                | Description                                                                                   |
 |--------------------------------|-----------------------------------------------------------------------------------------------|
@@ -24,7 +24,7 @@ AmyBot comes with the following command set:
 | `$join <channel>`              | Joins a specified channel (mods only).                                                       |
 | `$nick <new_name>`             | Changes the bot's nickname (mods only).                                                      |
 | `$op <user>`                   | Grants operator privileges to a specified user (mods only, channel use only).                |
-| `$auth <username> <password>`  | Authenticates a user with their credentials (must be sent in a private message to AmyBot).    |
+| `$auth <username> <password>`  | Authenticates a user with their credentials (must be sent in a private message to Amy).    |
 | `(^d\|.* d)o(o+)m.*`            | Responds with a dramatic ASCII art sequence of "DOOM!"                                       |
 | `fuck <something>`             | Expresses strong disapproval with an ASCII art sequence and the given input.                 |
 
@@ -33,24 +33,24 @@ AmyBot comes with the following command set:
 ### Detailed Command Descriptions
 
 #### `$reload`
-- **What it does**: Disconnects and reloads AmyBot.
+- **What it does**: Disconnects and reloads Amy.
 - **Who can use it**: Mods with "o" (operator) privileges.
-- **Behavior**: If unauthorized, AmyBot humorously refuses the command and kicks the user out of the channel.
+- **Behavior**: If unauthorized, Amy humorously refuses the command and kicks the user out of the channel.
 
 #### `$join <channel>`
-- **What it does**: Makes AmyBot join a specified IRC channel.
+- **What it does**: Makes Amy join a specified IRC channel.
 - **Who can use it**: Mods with "h" (half-op) or higher privileges.
 - **Behavior**: Unauthorized attempts result in playful ASCII art and a kick.
 
 #### `$nick <new_name>`
-- **What it does**: Changes AmyBot's nickname.
+- **What it does**: Changes Amy's nickname.
 - **Who can use it**: Mods with "o" (operator) privileges.
 - **Behavior**: Unauthorized users receive a loud, humorous refusal.
 
 #### `$op <user>`
 - **What it does**: Grants operator status to a specified user in the current channel.
 - **Who can use it**: Mods with "o" (operator) privileges.
-- **Behavior**: Only works in a channel; otherwise, AmyBot gently reminds the user.
+- **Behavior**: Only works in a channel; otherwise, Amy gently reminds the user.
 
 #### `$auth <username> <password>`
 - **What it does**: Authenticates a user with their username and password.
@@ -60,7 +60,7 @@ AmyBot comes with the following command set:
 #### `(^d|.* d)o(o+)m.*`
 - **What it does**: Triggers an ASCII art sequence representing DOOM in its most glorious form.
 - **Who can use it**: Anyone.
-- **Behavior**: AmyBot sends a dramatic series of ASCII lines to the channel with timed delays.
+- **Behavior**: Amy sends a dramatic series of ASCII lines to the channel with timed delays.
 
 #### `fuck <something>`
 - **What it does**: Outputs an ASCII sequence expressing strong feelings about the input.
@@ -71,7 +71,7 @@ AmyBot comes with the following command set:
 
 ## Configuration
 
-AmyBot is configured via a JSON file, `config.json`. Here’s a sample:
+Amy is configured via a JSON file, `config.json`. Here’s a sample:
 
 ```json
 {
@@ -99,4 +99,4 @@ AmyBot is configured via a JSON file, `config.json`. Here’s a sample:
 
 ---
 
-**AmyBot**: 🤗 Polite. 🤓 Quirky. 🌟 Useful... sometimes.
+**Amy**: 🤗 Polite. 🤓 Quirky. 🌟 Useful... sometimes.
