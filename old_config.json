@@ -1,0 +1,25 @@
+{
+    "irc.hacking.allowed.org": {
+        "channels": ["#default", "#botz"],
+        "prefix": "grandpa!bob@localhost"
+    },
+    "irc.anonops.com": {
+        "channels": ["#anonops", "#food"],
+        "prefix": "steve!steven@localhost"
+    },
+    "irc.hackthissite.org": {
+        "channels": ["#botz"],
+        "prefix": "grandpa!bob@localhost"
+    },
+    "irc.chknet.cc": {
+    	"channels": ["#ccpower", "#brazil", "#hispano", "#crimeircd", "#Mafia"],
+    	"prefix": "mclovin!mclovin@localhost"
+	},
+    "irc.realunix.org": {
+    	"channels": ["#unix", "#deep", "#ccpower", "#brazil"],
+    	"prefix": "mclovin!mclovin@localhost",
+	"sslflag": false,
+	"port": 6667
+	}
+}
+
