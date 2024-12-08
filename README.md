@@ -81,41 +81,36 @@ self.card_handlers = {
 
 ## Configuration
 
-Amy is configured via a JSON file, `config.json`. See the earlier sections for a sample configuration file.
+Amy is configured via a JSON file, `config.json`. Here’s a sample:
+
+```json
+{
+    "irc.hackermeme.net": {
+        "channels": ["#cmd", "#design", "#hackermeme", "#music"],
+        "prefix": "amy!amy@localhost",
+        "sslflag": false,
+        "port": 6667,
+        "mods": {
+            "heather": ["o", "<PASSWORD-HASH>"],
+            "epoch": ["o", "<PASSWORD-HASH>"],
+            "alice": ["o", "<PASSWORD-HASH>"],
+            "bunny": ["o", "<PASSWORD-HASH>"],
+            "uniquelyelite": ["h", "<PASSWORD-HASH>"]
+        }
+    }
+}
+```
+
+### Configuration Notes
+- **Server Settings**: Define the IRC server, channels, and connection options.
+- **Moderators**: Use hashed passwords to manage access levels:
+  - `"o"`: Operator privileges.
+  - `"h"`: Half-op privileges.
 
 ---
-
-## Running Amy
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/Amy.git
-   cd Amy
-   ```
-
-2. Configure the bot:
-   - Copy and edit the sample configuration:
-     ```bash
-     cp config.sample.json config.json
-     nano config.json
-     ```
-
-3. Run the bot:
-   ```bash
-   python Amy.py
-   ```
-
----
-
 ## Contributing
 
 Want to add new features or commands? Feel free to fork the repo, make changes, and submit a pull request. Amy is always open to new ideas!
-
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
