@@ -67,15 +67,7 @@ Amy includes a comprehensive set of tools to collect and process information fro
 
 ### Example Configurations
 
-Sample regular expressions and handlers are defined in `handlers`:
-
-```python
-self.card_handlers = {
-    r"\b[0-9]{16}\b": self.ccn_handler,
-    r"\b(DEBIT|CREDIT)\b": lambda x: {"card_account": [y.lower() for y in x]},
-    ...
-}
-```
+Sample regular expressions and handlers are defined in `handlers`
 
 ---
 
